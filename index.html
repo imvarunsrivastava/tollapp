@@ -79,17 +79,39 @@
                 </div>
             </section>
 
+            <!-- API Configuration -->
+            <section class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">&#128273;</span>
+                    MapUp TollGuru API
+                </h2>
+                <div class="form-grid">
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label for="apiKey">TollGuru API Key</label>
+                        <input type="password" id="apiKey" placeholder="Enter your TollGuru API key">
+                        <small class="hint">Get a free API key at <a href="https://tollguru.com/toll-api-docs" target="_blank">tollguru.com</a> (by MapUp)</small>
+                    </div>
+                </div>
+            </section>
+
             <!-- Toll Charges Section -->
             <section class="card">
                 <h2 class="card-title">
                     <span class="card-icon">&#128679;</span>
                     Toll &amp; Route Charges
                 </h2>
+                <div class="toll-fetch-row">
+                    <button type="button" class="btn-fetch-toll" id="btnFetchToll" onclick="fetchTollFromAPI()">
+                        <span id="fetchTollText">Fetch Tolls &amp; Distance via MapUp API</span>
+                        <span id="fetchTollSpinner" class="spinner hidden"></span>
+                    </button>
+                    <div id="tollApiStatus" class="toll-api-status hidden"></div>
+                </div>
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="tollCharges">Toll Charges (&#8377;)</label>
                         <input type="number" id="tollCharges" placeholder="Enter total toll amount" min="0" step="1" value="0">
-                        <small class="hint">Enter known toll charges for the route. Use 0 if unknown.</small>
+                        <small class="hint">Enter manually or use the Fetch button above to auto-fill from MapUp API.</small>
                     </div>
                     <div class="form-group">
                         <label for="parkingCharges">Parking Charges (&#8377;)</label>
