@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Cost Calculator - Tour & Travel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">&#9992;</span>
+                <h1>TripCost Pro</h1>
+            </div>
+            <p class="tagline">Smart Trip Cost Calculator for Tour &amp; Travel Operators</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <form id="tripForm" class="trip-form">
+            <!-- Route Section -->
+            <section class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">&#128205;</span>
+                    Route Details
+                </h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="origin">Point A (Origin)</label>
+                        <input type="text" id="origin" placeholder="e.g. Mumbai" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="destination">Point B (Destination)</label>
+                        <input type="text" id="destination" placeholder="e.g. Pune" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="distance">Total Distance (km)</label>
+                        <input type="number" id="distance" placeholder="Enter distance in km" min="1" step="0.1" required>
+                        <small class="hint">Enter one-way distance. Round trip will be calculated automatically.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="tripType">Trip Type</label>
+                        <select id="tripType">
+                            <option value="oneway">One Way</option>
+                            <option value="roundtrip" selected>Round Trip</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vehicle Section -->
+            <section class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">&#128663;</span>
+                    Vehicle Details
+                </h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="carType">Car Type / Name</label>
+                        <select id="carType">
+                            <option value="custom">Custom</option>
+                            <option value="sedan">Sedan (Swift Dzire / Etios)</option>
+                            <option value="suv">SUV (Innova / Ertiga)</option>
+                            <option value="luxury">Luxury (Fortuner / Crysta)</option>
+                            <option value="tempo">Tempo Traveller</option>
+                            <option value="bus">Mini Bus / Bus</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mileage">Mileage (km/litre)</label>
+                        <input type="number" id="mileage" placeholder="e.g. 15" min="1" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fuelPrice">Fuel Price (&#8377;/litre)</label>
+                        <input type="number" id="fuelPrice" placeholder="e.g. 105" min="1" step="0.01" required value="105">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Toll Charges Section -->
+            <section class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">&#128679;</span>
+                    Toll &amp; Route Charges
+                </h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="tollCharges">Toll Charges (&#8377;)</label>
+                        <input type="number" id="tollCharges" placeholder="Enter total toll amount" min="0" step="1" value="0">
+                        <small class="hint">Enter known toll charges for the route. Use 0 if unknown.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="parkingCharges">Parking Charges (&#8377;)</label>
+                        <input type="number" id="parkingCharges" placeholder="Estimated parking" min="0" step="1" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="statePermit">State Permit / Tax (&#8377;)</label>
+                        <input type="number" id="statePermit" placeholder="Inter-state permit cost" min="0" step="1" value="0">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trip Charges Section -->
+            <section class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">&#128197;</span>
+                    Trip Charges
+                </h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="numDays">Number of Days</label>
+                        <input type="number" id="numDays" placeholder="e.g. 2" min="1" step="1" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numNights">Number of Nights</label>
+                        <input type="number" id="numNights" placeholder="e.g. 1" min="0" step="1" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="dayCharge">Day Charge (&#8377;/day)</label>
+                        <input type="number" id="dayCharge" placeholder="e.g. 2500" min="0" step="1" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="nightCharge">Night Charge (&#8377;/night)</label>
+                        <input type="number" id="nightCharge" placeholder="e.g. 1500" min="0" step="1" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="driverAllowance">Driver Allowance (&#8377;/day)</label>
+                        <input type="number" id="driverAllowance" placeholder="e.g. 300" min="0" step="1" value="300">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profit Section -->
+            <section class="card">
+                <h2 class="card-title">
+                    <span class="card-icon">&#128176;</span>
+                    Profit Margin
+                </h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="profitMargin">Profit Margin (%)</label>
+                        <input type="number" id="profitMargin" placeholder="e.g. 15" min="0" max="100" step="0.5" value="15">
+                    </div>
+                </div>
+            </section>
+
+            <button type="submit" class="btn-calculate">Calculate Trip Cost</button>
+        </form>
+
+        <!-- Results Section -->
+        <section id="results" class="results-section hidden">
+            <div class="card results-card">
+                <h2 class="card-title">
+                    <span class="card-icon">&#128202;</span>
+                    Cost Summary
+                </h2>
+                <div class="results-header">
+                    <div class="route-label" id="routeLabel">-</div>
+                    <div class="trip-type-label" id="tripTypeLabel">-</div>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-item">
+                        <span class="result-label">Total Distance</span>
+                        <span class="result-value" id="resultDistance">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Fuel Cost</span>
+                        <span class="result-value" id="resultFuelCost">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Toll Charges</span>
+                        <span class="result-value" id="resultTollCharges">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Parking Charges</span>
+                        <span class="result-value" id="resultParkingCharges">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">State Permit / Tax</span>
+                        <span class="result-value" id="resultStatePermit">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Day Charges</span>
+                        <span class="result-value" id="resultDayCharges">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Night Charges</span>
+                        <span class="result-value" id="resultNightCharges">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Driver Allowance</span>
+                        <span class="result-value" id="resultDriverAllowance">-</span>
+                    </div>
+                    <div class="result-item highlight">
+                        <span class="result-label">Base Trip Cost</span>
+                        <span class="result-value" id="resultBaseCost">-</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Profit Margin</span>
+                        <span class="result-value" id="resultProfitAmount">-</span>
+                    </div>
+                    <div class="result-item final-price">
+                        <span class="result-label">Final Quoted Price</span>
+                        <span class="result-value" id="resultFinalPrice">-</span>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button type="button" class="btn-secondary" id="btnPrint" onclick="window.print()">Print Summary</button>
+                    <button type="button" class="btn-secondary" id="btnReset" onclick="resetForm()">New Calculation</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>TripCost Pro &mdash; Built for Tour &amp; Travel Operators in India</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
